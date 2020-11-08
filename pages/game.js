@@ -1,12 +1,10 @@
 
 import { Fragment, useEffect, useState } from 'react'
 import Container from 'react-bootstrap/Container'
-import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Alert from 'react-bootstrap/Alert'
 import Row from 'react-bootstrap/Row'
 
-import { translateByQuery } from '../lib/translateByQuery'
 import { getWords } from '../lib/firebaseResult.js'
 import { getRandMCQuestion } from '../lib/data/dataProcess'
 

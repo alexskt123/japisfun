@@ -3,7 +3,8 @@ import { useState, useEffect, Fragment } from 'react'
 import Container from 'react-bootstrap/Container'
 import { getSoup } from '../lib/getSoup';
 import Table from 'react-bootstrap/Table'
-
+import { setWords } from '../lib/firebaseResult';
+import Button from 'react-bootstrap/Button'
 
 
 export default function Soup() {
@@ -15,8 +16,13 @@ export default function Soup() {
         { level: 'n4', target: '06-noun-nature.php' }
     ]
 
+    const handleClick = async () => {
+        await setWords(items)
+    }
+
     const [items, setItems] = useState([])
     const [itemHeaders, setItemHeaders] = useState([])
+    
 
     useEffect(() => {
         (async () => {
@@ -63,6 +69,7 @@ export default function Soup() {
 
                     </tbody>
                 </Table>
+                <Button onClick={() => { handleClick() }} variant='dark'>{`Add`}</Button>
             </Container>
 
         </Fragment>

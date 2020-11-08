@@ -10,9 +10,11 @@ import Button from 'react-bootstrap/Button'
 export default function Soup() {
 
     const grabItems = [
+        { level: 'n5', target: '05-noun-place.php' },
         { level: 'n5', target: '06-noun-position.php' },
         { level: 'n5', target: '07-noun-food.php' },
         { level: 'n5', target: '09-noun-traffic.php' },
+        { level: 'n5', target: '16-adj-opposite.php'},
         { level: 'n4', target: '06-noun-nature.php' }
     ]
 

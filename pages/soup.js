@@ -6,31 +6,7 @@ import Table from 'react-bootstrap/Table'
 
 
 
-export default function Soup() {
-
-    const grabItems = [
-        { level: 'n5', target: '06-noun-position.php' },
-        { level: 'n5', target: '07-noun-food.php' },
-        { level: 'n5', target: '09-noun-traffic.php' },
-        { level: 'n4', target: '06-noun-nature.php' }
-    ]
-
-    const [items, setItems] = useState([])
-    const [itemHeaders, setItemHeaders] = useState([])
-
-    useEffect(() => {
-        (async () => {
-
-            const responseArr = await getSoup(grabItems)
-
-            setItemHeaders(Object.keys(responseArr.find(x => x)))
-
-            setItems(responseArr)
-
-        })()
-
-    }, [])
-
+export default function Soup({ items, itemHeaders }) {
     if (items.length <= 0) return (
         <Fragment>
             <Container style={{ minHeight: '100vh' }} className="mt-5 shadow-lg p-3 mb-5 bg-white rounded">
@@ -69,3 +45,24 @@ export default function Soup() {
     )
 }
 
+export async function getStaticProps() {
+    const grabItems = [
+        { level: 'n5', target: '06-noun-position.php' },
+        { level: 'n5', target: '07-noun-food.php' },
+        { level: 'n5', target: '09-noun-traffic.php' },
+        { level: 'n4', target: '06-noun-nature.php' }
+    ]
+
+    const responseArr = await getSoup(grabItems)
+
+    let items = responseArr
+    let itemHeaders = Object.keys(responseArr.find(x => x))
+
+    return {
+        props: {
+            items,
+            itemHeaders
+        },
+        revalidate: 1 * 60 * 60
+    }
+}

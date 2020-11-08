@@ -6,6 +6,8 @@ import Button from 'react-bootstrap/Button'
 import Alert from 'react-bootstrap/Alert'
 
 import { translateByQuery } from '../lib/translateByQuery'
+import { getHistory, setHistory } from '../lib/firebaseResult.js'
+
 
 export default function Home() {
 
@@ -29,10 +31,17 @@ export default function Home() {
 
     } else {
 
-      const translation = await translateByQuery(formValue.translate)
-      console.log(translation.data)
+      
 
-      setTranslatedValue(translation.data)
+      let history = await getHistory(formValue.translate)
+      let translation = history.to
+
+      if (!translation) {
+        translation = (await translateByQuery(formValue.translate)).data
+      }
+      
+      await setHistory(formValue.translate, translation)
+      setTranslatedValue(translation)
     }
     setValidated(true)
   }

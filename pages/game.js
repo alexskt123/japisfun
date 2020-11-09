@@ -71,7 +71,7 @@ export default function Home({words}) {
           <Row className="pl-3">
             {mc.answer.map((item, idx) => {
               return (
-                <Button onClick={() => { handleClick(mc.question, item) }}  key={idx} variant='outline-dark'>
+                <Button onClick={() => { handleClick(mc.question, item) }}  key={`${item}${idx}`} variant='outline-dark'>
                   {item}
                 </Button>
               )

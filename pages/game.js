@@ -26,7 +26,7 @@ export default function Home({words}) {
         setCorrect('啱！')
       }
       else {
-        setCorrect('唔啱！')
+        setCorrect(`唔啱！正確答案：${question} - ${words.filter(x=> (x['假名']===question || x['日文']===question)).find(x=>x).中文}`)
       }
 
     setTotalCount(totalCount + 1)
@@ -57,7 +57,8 @@ export default function Home({words}) {
         <Fragment>
           <Row className="pl-3 mt-3">
             <Alert variant='danger'>
-              {`問題： ${mc.question}`}
+              <span>{`問題： ${mc.question}`}</span>
+              <span className="ml-4">{`重音： ${mc.sound}`}</span>
             </Alert>
             <Alert variant='success'>
               {`${correctCount} / ${totalCount}`}

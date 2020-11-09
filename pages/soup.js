@@ -1,5 +1,5 @@
 
-import { useState, useEffect, Fragment } from 'react'
+import { Fragment } from 'react'
 import Container from 'react-bootstrap/Container'
 import { getSoup } from '../lib/getSoup';
 import Table from 'react-bootstrap/Table'
@@ -7,41 +7,11 @@ import { setWords } from '../lib/firebaseResult';
 import Button from 'react-bootstrap/Button'
 
 
-export default function Soup() {
-
-    const grabItems = [
-        //{ level: 'n5', target: '02-noun-family.php' },
-        { level: 'n5', target: '03-noun-body.php' },
-        { level: 'n5', target: '05-noun-place.php' },
-        { level: 'n5', target: '06-noun-position.php' },
-        { level: 'n5', target: '07-noun-food.php' },
-        { level: 'n5', target: '09-noun-traffic.php' },
-        { level: 'n5', target: '11-noun-electric.php' },
-        { level: 'n5', target: '13-noun-casual.php' },
-        { level: 'n5', target: '16-adj-opposite.php'},
-        { level: 'n4', target: '06-noun-nature.php' }
-    ]
+export default function Soup({ items, itemHeaders }) {
 
     const handleClick = async () => {
         await setWords(items)
     }
-
-    const [items, setItems] = useState([])
-    const [itemHeaders, setItemHeaders] = useState([])
-    
-
-    useEffect(() => {
-        (async () => {
-
-            const responseArr = await getSoup(grabItems)
-
-            setItemHeaders(Object.keys(responseArr.find(x => x)))
-
-            setItems(responseArr)
-
-        })()
-
-    }, [])
 
     if (items.length <= 0) return (
         <Fragment>
@@ -82,3 +52,30 @@ export default function Soup() {
     )
 }
 
+export async function getStaticProps() {
+    const grabItems = [
+        //{ level: 'n5', target: '02-noun-family.php' },
+        { level: 'n5', target: '03-noun-body.php' },
+        { level: 'n5', target: '05-noun-place.php' },
+        { level: 'n5', target: '06-noun-position.php' },
+        { level: 'n5', target: '07-noun-food.php' },
+        { level: 'n5', target: '09-noun-traffic.php' },
+        { level: 'n5', target: '11-noun-electric.php' },
+        { level: 'n5', target: '13-noun-casual.php' },
+        { level: 'n5', target: '16-adj-opposite.php' },
+        { level: 'n4', target: '06-noun-nature.php' }
+    ]
+
+    const responseArr = await getSoup(grabItems)
+
+    let items = responseArr
+    let itemHeaders = Object.keys(responseArr.find(x => x))
+
+    return {
+        props: {
+            items,
+            itemHeaders
+        },
+        revalidate: 1 * 60 * 60
+    }
+}

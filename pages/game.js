@@ -26,7 +26,7 @@ export default function Home({ words }) {
       setCorrect('啱！')
     }
     else {
-      setCorrect('唔啱！')
+      setCorrect(`唔啱！正確答案：${question} - ${words.filter(x => (x['假名'] === question || x['日文'] === question)).find(x => x).中文}`)
     }
 
     setTotalCount(totalCount + 1)
@@ -55,22 +55,26 @@ export default function Home({ words }) {
     <Fragment>
       <Container style={{ minHeight: '100vh' }} className="mt-5 shadow-lg p-3 mb-5 bg-white rounded">
         <Fragment>
-          <Row className="pl-3 mt-3">
+          {
+            !!totalCount && <Row className="pl-3 mt-3">
+              <Alert variant='success'>
+                {`${correctCount} / ${totalCount}`}
+              </Alert>
+              <Alert variant='info'>
+                {correct}
+              </Alert>
+            </Row>
+          }
+          <Row className="pl-3">
             <Alert variant='danger'>
-              {`問題： ${mc.question}`}
-            </Alert>
-            <Alert variant='success'>
-              {`${correctCount} / ${totalCount}`}
-            </Alert>
-            <Alert variant='info'>
-              {correct}
+              <span>{`問題： ${mc.question}`}</span>
+              <span className="ml-4">{`重音： ${mc.sound}`}</span>
             </Alert>
           </Row>
-
           <Row className="pl-3">
             {mc.answer.map((item, idx) => {
               return (
-                <Button onClick={() => { handleClick(mc.question, item) }} key={idx} variant='outline-dark'>
+                <Button onClick={() => { handleClick(mc.question, item) }} key={`${item}${idx}`} variant='outline-dark'>
                   {item}
                 </Button>
               )

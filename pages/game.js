@@ -55,14 +55,16 @@ export default function Home({ words }) {
     <Fragment>
       <Container style={{ minHeight: '100vh' }} className="mt-5 shadow-lg p-3 mb-5 bg-white rounded">
         <Fragment>
-          <Row className="pl-3 mt-3">
-            <Alert variant='success'>
-              {`${correctCount} / ${totalCount}`}
-            </Alert>
-            <Alert variant='info'>
-              {correct}
-            </Alert>
-          </Row>
+          {
+            !!totalCount && <Row className="pl-3 mt-3">
+              <Alert variant='success'>
+                {`${correctCount} / ${totalCount}`}
+              </Alert>
+              <Alert variant='info'>
+                {correct}
+              </Alert>
+            </Row>
+          }
           <Row className="pl-3">
             <Alert variant='danger'>
               <span>{`問題： ${mc.question}`}</span>

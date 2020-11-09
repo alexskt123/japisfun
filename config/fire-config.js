@@ -3,7 +3,7 @@
 // require('firebase/firestore')
 // require('firebase/database')
 
-import firebase from "firebase/app";
+import firebase from 'firebase/app'
 require('firebase/firestore')
 require('firebase/database')
 

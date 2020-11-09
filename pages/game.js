@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button'
 import Alert from 'react-bootstrap/Alert'
 import Row from 'react-bootstrap/Row'
 
-import { getWords, setHistory } from '../lib/firebaseResult.js'
+import { getWords } from '../lib/firebaseResult.js'
 import { getRandMCQuestion } from '../lib/data/dataProcess'
 
 

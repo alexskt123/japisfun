@@ -8,7 +8,7 @@ export default function CustomStep() {
   const router = useRouter()
 
   useEffect(() => {
-    router.push(`/game`)
+    router.push('/game')
   }, [])
 
   //template

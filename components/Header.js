@@ -1,5 +1,5 @@
 // react, next and hooks
-import { Fragment, useState, useEffect } from 'react'
+import { Fragment } from 'react'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 import Link from 'next/link'
@@ -7,7 +7,7 @@ import Link from 'next/link'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 // config
-import Settings, { NavItems } from '../config/settings'
+import { NavItems } from '../config/settings'
 
 
 function Header() {
@@ -39,7 +39,7 @@ function Header() {
             })}
           </Nav>
 
-          
+
         </Navbar.Collapse>
       </Navbar>
     </Fragment >

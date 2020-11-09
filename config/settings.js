@@ -8,7 +8,7 @@ export default Settings
 export const NavItems = [
   {
     href: '/game',
-    label: '測驗'
+    label: '單字測驗'
   },
   {
     href: '/translate',

@@ -56,12 +56,15 @@ export async function getStaticProps() {
     const grabItems = [
         //{ level: 'n5', target: '02-noun-family.php' },
         { level: 'n5', target: '03-noun-body.php' },
+        { level: 'n5', target: '04-noun-job.php' },
         { level: 'n5', target: '05-noun-place.php' },
         { level: 'n5', target: '06-noun-position.php' },
         { level: 'n5', target: '07-noun-food.php' },
         { level: 'n5', target: '09-noun-traffic.php' },
+        { level: 'n5', target: '10-noun-clothes.php' },
         { level: 'n5', target: '11-noun-electric.php' },
         { level: 'n5', target: '13-noun-casual.php' },
+        { level: 'n5', target: '14-noun-seasons.php' },
         { level: 'n5', target: '16-adj-opposite.php' },
         { level: 'n4', target: '06-noun-nature.php' }
     ]

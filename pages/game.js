@@ -5,11 +5,11 @@ import Button from 'react-bootstrap/Button'
 import Alert from 'react-bootstrap/Alert'
 import Row from 'react-bootstrap/Row'
 
-import { getWords, setHistory } from '../lib/firebaseResult.js'
+import { getWords } from '../lib/firebaseResult.js'
 import { getRandMCQuestion } from '../lib/data/dataProcess'
 
 
-export default function Home({words}) {
+export default function Home({ words }) {
 
   const [mc, setMC] = useState(null)
   const [nextMC, setNextMC] = useState(false)
@@ -19,15 +19,15 @@ export default function Home({words}) {
 
   const handleClick = async (question, answer) => {
     if (words
-      .filter(x=> (x['假名']===question || x['日文']===question))
-      .filter(x=> x['中文']===answer)
+      .filter(x => (x['假名'] === question || x['日文'] === question))
+      .filter(x => x['中文'] === answer)
       .length) {
-        setCorrectCount(correctCount + 1)
-        setCorrect('啱！')
-      }
-      else {
-        setCorrect('唔啱！')
-      }
+      setCorrectCount(correctCount + 1)
+      setCorrect('啱！')
+    }
+    else {
+      setCorrect('唔啱！')
+    }
 
     setTotalCount(totalCount + 1)
     setNextMC(!nextMC)
@@ -70,7 +70,7 @@ export default function Home({words}) {
           <Row className="pl-3">
             {mc.answer.map((item, idx) => {
               return (
-                <Button onClick={() => { handleClick(mc.question, item) }}  key={idx} variant='outline-dark'>
+                <Button onClick={() => { handleClick(mc.question, item) }} key={idx} variant='outline-dark'>
                   {item}
                 </Button>
               )
@@ -89,8 +89,8 @@ export async function getStaticProps() {
   const words = await getWords()
 
   return {
-      props: {
-        words
-      },
+    props: {
+      words
+    },
   }
 }

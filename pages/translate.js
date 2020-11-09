@@ -1,5 +1,4 @@
-
-import { Fragment, useEffect, useState } from 'react'
+import { Fragment, useState } from 'react'
 import Container from 'react-bootstrap/Container'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
@@ -32,15 +31,15 @@ export default function Translate() {
 
     } else {
 
-      
 
-      let history = await getHistory(formValue.translate)
+
+      const history = await getHistory(formValue.translate)
       let translation = history.to
 
       if (!translation) {
         translation = (await translateByQuery(formValue.translate)).data
       }
-      
+
       await setHistory(formValue.translate, translation)
       setTranslatedValue(translation)
     }
@@ -54,11 +53,11 @@ export default function Translate() {
         <Fragment>
           <Form noValidate validated={validated} onSubmit={handleSubmit}>
             <Form.Group controlId="exampleForm.ControlTextarea1">
-              <Form.Label><Badge variant='dark'><h4>{`翻譯 - 日 轉 中`}</h4></Badge></Form.Label>
+              <Form.Label><Badge variant='dark'><h4>{'翻譯 - 日 轉 中'}</h4></Badge></Form.Label>
               <Form.Control required name="translate" as="textarea" rows={3} onKeyUp={(e) => handleChange(e)} />
             </Form.Group>
             <Button variant="primary" type="submit">
-              {`Submit`}
+              {'Submit'}
             </Button>
           </Form>
           {

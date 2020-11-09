@@ -8,10 +8,10 @@ import { Fragment } from 'react'
 function MyApp({ Component, pageProps }) {
   return (
     <Fragment>
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
-  </Fragment>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </Fragment>
   )
 }
 

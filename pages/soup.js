@@ -1,12 +1,18 @@
 
-import { useState, useEffect, Fragment } from 'react'
+import { Fragment } from 'react'
 import Container from 'react-bootstrap/Container'
 import { getSoup } from '../lib/getSoup';
 import Table from 'react-bootstrap/Table'
-
+import { setWords } from '../lib/firebaseResult';
+import Button from 'react-bootstrap/Button'
 
 
 export default function Soup({ items, itemHeaders }) {
+
+    const handleClick = async () => {
+        await setWords(items)
+    }
+
     if (items.length <= 0) return (
         <Fragment>
             <Container style={{ minHeight: '100vh' }} className="mt-5 shadow-lg p-3 mb-5 bg-white rounded">
@@ -39,6 +45,7 @@ export default function Soup({ items, itemHeaders }) {
 
                     </tbody>
                 </Table>
+                <Button onClick={() => { handleClick() }} variant='dark'>{`Add`}</Button>
             </Container>
 
         </Fragment>
@@ -47,9 +54,15 @@ export default function Soup({ items, itemHeaders }) {
 
 export async function getStaticProps() {
     const grabItems = [
+        //{ level: 'n5', target: '02-noun-family.php' },
+        { level: 'n5', target: '03-noun-body.php' },
+        { level: 'n5', target: '05-noun-place.php' },
         { level: 'n5', target: '06-noun-position.php' },
         { level: 'n5', target: '07-noun-food.php' },
         { level: 'n5', target: '09-noun-traffic.php' },
+        { level: 'n5', target: '11-noun-electric.php' },
+        { level: 'n5', target: '13-noun-casual.php' },
+        { level: 'n5', target: '16-adj-opposite.php' },
         { level: 'n4', target: '06-noun-nature.php' }
     ]
 

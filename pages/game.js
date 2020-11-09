@@ -9,7 +9,7 @@ import { getWords, setHistory } from '../lib/firebaseResult.js'
 import { getRandMCQuestion } from '../lib/data/dataProcess'
 
 
-export default function Home({words}) {
+export default function Home({ words }) {
 
   const [mc, setMC] = useState(null)
   const [nextMC, setNextMC] = useState(false)
@@ -19,15 +19,15 @@ export default function Home({words}) {
 
   const handleClick = async (question, answer) => {
     if (words
-      .filter(x=> (x['假名']===question || x['日文']===question))
-      .filter(x=> x['中文']===answer)
+      .filter(x => (x['假名'] === question || x['日文'] === question))
+      .filter(x => x['中文'] === answer)
       .length) {
-        setCorrectCount(correctCount + 1)
-        setCorrect('啱！')
-      }
-      else {
-        setCorrect(`唔啱！正確答案：${question} - ${words.filter(x=> (x['假名']===question || x['日文']===question)).find(x=>x).中文}`)
-      }
+      setCorrectCount(correctCount + 1)
+      setCorrect('啱！')
+    }
+    else {
+      setCorrect(`唔啱！正確答案：${question} - ${words.filter(x => (x['假名'] === question || x['日文'] === question)).find(x => x).中文}`)
+    }
 
     setTotalCount(totalCount + 1)
     setNextMC(!nextMC)
@@ -56,10 +56,6 @@ export default function Home({words}) {
       <Container style={{ minHeight: '100vh' }} className="mt-5 shadow-lg p-3 mb-5 bg-white rounded">
         <Fragment>
           <Row className="pl-3 mt-3">
-            <Alert variant='danger'>
-              <span>{`問題： ${mc.question}`}</span>
-              <span className="ml-4">{`重音： ${mc.sound}`}</span>
-            </Alert>
             <Alert variant='success'>
               {`${correctCount} / ${totalCount}`}
             </Alert>
@@ -67,11 +63,16 @@ export default function Home({words}) {
               {correct}
             </Alert>
           </Row>
-
+          <Row className="pl-3">
+            <Alert variant='danger'>
+              <span>{`問題： ${mc.question}`}</span>
+              <span className="ml-4">{`重音： ${mc.sound}`}</span>
+            </Alert>
+          </Row>
           <Row className="pl-3">
             {mc.answer.map((item, idx) => {
               return (
-                <Button onClick={() => { handleClick(mc.question, item) }}  key={`${item}${idx}`} variant='outline-dark'>
+                <Button onClick={() => { handleClick(mc.question, item) }} key={`${item}${idx}`} variant='outline-dark'>
                   {item}
                 </Button>
               )
@@ -90,8 +91,8 @@ export async function getStaticProps() {
   const words = await getWords()
 
   return {
-      props: {
-        words
-      },
+    props: {
+      words
+    },
   }
 }

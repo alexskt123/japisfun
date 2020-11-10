@@ -9,9 +9,10 @@ import { getWords } from '../lib/firebaseResult.js'
 import { getRandMCQuestion } from '../lib/data/dataProcess'
 
 
-export default function Home({ words }) {
+export default function Home() {
 
   const [mc, setMC] = useState(null)
+  const [words, setWords] = useState(null)
   const [nextMC, setNextMC] = useState(false)
   const [totalCount, setTotalCount] = useState(0)
   const [correctCount, setCorrectCount] = useState(0)
@@ -36,7 +37,10 @@ export default function Home({ words }) {
   useEffect(() => {
     (async () => {
 
+      const words = await getWords()
       const question = await getRandMCQuestion(words)
+
+      setWords(words)
       setMC(question)
 
     })()
@@ -87,14 +91,4 @@ export default function Home({ words }) {
 
     </Fragment>
   )
-}
-
-export async function getStaticProps() {
-  const words = await getWords()
-
-  return {
-    props: {
-      words
-    },
-  }
 }

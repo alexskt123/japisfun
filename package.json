@@ -9,10 +9,12 @@
     "lint": "eslint --fix **/*.js"
   },
   "dependencies": {
+    "@monaco-editor/react": "^3.6.3",
     "axios": "^0.21.0",
     "bootstrap": "^4.5.3",
     "chinese-conv": "^1.0.1",
     "firebase": "^8.0.1",
+    "js-cookie": "^2.2.1",
     "jssoup": "0.0.12",
     "next": "10.0.1",
     "react": "17.0.1",

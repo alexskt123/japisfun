@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button'
 import Alert from 'react-bootstrap/Alert'
 import Row from 'react-bootstrap/Row'
 
-import { getWords } from '../lib/firebaseResult.js'
+import { getRandWords } from '../lib/firebaseResult.js'
 import { getRandMCQuestion } from '../lib/data/dataProcess'
 
 
@@ -37,7 +37,7 @@ export default function Home() {
   useEffect(() => {
     (async () => {
 
-      const words = await getWords()
+      const words = await getRandWords()
       const question = await getRandMCQuestion(words)
 
       setWords(words)

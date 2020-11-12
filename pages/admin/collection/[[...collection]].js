@@ -1,6 +1,5 @@
 import { Fragment, useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
-import { ControlledEditor } from '@monaco-editor/react'
 
 import fire from '../../../config/fire-config'
 
@@ -15,11 +14,19 @@ export default function Collection() {
   const [collections, setCollections] = useState([]) // for result
   const [value, setValue] = useState() // for editor
 
-  const valueGetter = useRef()
-
   const getRouterPath = () => {
     return router.asPath.replace(/\/admin\/collection\/?/g, '')
   }
+
+  const [Editor, setEditor] = useState()
+
+
+  useEffect(() => {
+    (async () => {
+      const JSONEditor = await (await import('../../../components/JSONEditor')).default
+      setEditor(<JSONEditor json={value} />)
+    })()
+  }, [value])
 
   useEffect(() => {
     const path = getRouterPath()
@@ -51,12 +58,9 @@ export default function Collection() {
   }, [collectionName])
 
   useEffect(() => {
-    setValue(JSON.stringify(collections, null, 2))
+    console.log('setValue(collections)')
+    setValue(collections)
   }, [collections])
-
-  const handleEditorDidMount = ref => {
-    valueGetter.current = ref
-  }
 
   const handleCollectionChange = e => {
     setFormValue(e.target.value)
@@ -73,13 +77,7 @@ export default function Collection() {
           <FormControl id="collectionName" placeholder="Collection Name" onKeyUp={handleCollectionChange} defaultValue={getRouterPath()} />
         </InputGroup>
         <h1>Editor</h1>
-        <ControlledEditor
-          height="100vh"
-          language="json"
-          theme="dark"
-          value={value}
-          editorDidMount={handleEditorDidMount}
-        />
+        {Editor}
       </div>
     </Fragment>
   )

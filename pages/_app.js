@@ -1,5 +1,6 @@
 import '../styles/globals.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import 'jsoneditor/dist/jsoneditor.min.css'
 
 import Layout from '../components/Layout'
 import { Fragment } from 'react'

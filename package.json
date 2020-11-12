@@ -13,6 +13,7 @@
     "bootstrap": "^4.5.3",
     "chinese-conv": "^1.0.1",
     "firebase": "^8.0.1",
+    "jsoneditor": "^9.1.2",
     "jssoup": "0.0.12",
     "next": "10.0.1",
     "react": "17.0.1",

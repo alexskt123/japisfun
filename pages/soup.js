@@ -60,13 +60,19 @@ export async function getStaticProps() {
     { level: 'n5', target: '05-noun-place.php' },
     { level: 'n5', target: '06-noun-position.php' },
     { level: 'n5', target: '07-noun-food.php' },
+    { level: 'n5', target: '08-noun-natural.php' },
     { level: 'n5', target: '09-noun-traffic.php' },
     { level: 'n5', target: '10-noun-clothes.php' },
     { level: 'n5', target: '11-noun-electric.php' },
+    { level: 'n5', target: '12-noun-stationery.php' },
     { level: 'n5', target: '13-noun-casual.php' },
     { level: 'n5', target: '14-noun-seasons.php' },
+    { level: 'n5', target: '15-noun-unclassified.php' },
     { level: 'n5', target: '16-adj-opposite.php' },
-    { level: 'n4', target: '06-noun-nature.php' }
+    { level: 'n5', target: '17-adj-color.php' },
+    { level: 'n5', target: '18-adj-unclassified.php'},
+    { level: 'n5', target: '19-adj-na-unclassified.php'},
+    //{ level: 'n4', target: '06-noun-nature.php' }
   ]
 
   const responseArr = await getSoup(grabItems)
